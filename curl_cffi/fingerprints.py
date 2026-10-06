@@ -177,6 +177,38 @@ NATIVE_IMPERSONATE_TARGETS = [
     },
     {
         "browser": "Chrome",
+        "version": "151",
+        "os": "macOS",
+        "os_version": "Tahoe",
+        "target_name": "chrome151",
+        "h3_fingerprints": True,
+    },
+    {
+        "browser": "Chrome",
+        "version": "152",
+        "os": "macOS",
+        "os_version": "Tahoe",
+        "target_name": "chrome152",
+        "h3_fingerprints": True,
+    },
+    {
+        "browser": "Chrome",
+        "version": "153",
+        "os": "macOS",
+        "os_version": "Tahoe",
+        "target_name": "chrome153",
+        "h3_fingerprints": True,
+    },
+    {
+        "browser": "Chrome",
+        "version": "154",
+        "os": "macOS",
+        "os_version": "Tahoe",
+        "target_name": "chrome154",
+        "h3_fingerprints": True,
+    },
+    {
+        "browser": "Chrome",
         "version": "99",
         "os": "Android",
         "os_version": "12",
@@ -387,11 +419,15 @@ class Fingerprint:
     tls_delegated_credentials: list[str] = field(default_factory=list)
     tls_record_size_limit: int | None = None
     tls_grease: bool = False
+    tls_grease_sigalgs: bool = False
     tls_use_new_alps_codepoint: bool = False
     tls_signed_cert_timestamps: bool = False
     tls_ech: str | None = None
     tls_permute_extensions: bool = False
     tls_trust_anchors: list[str] | None = None
+    # Chrome 154 sends the trust anchors in a fixed order; None keeps the
+    # libcurl default, which shuffles them on every connection.
+    tls_trust_anchors_shuffle: bool | None = None
 
     headers: dict[str, str] = field(default_factory=dict)
     header_order: str = ""

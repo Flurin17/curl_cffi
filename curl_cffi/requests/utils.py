@@ -338,6 +338,8 @@ def set_extra_fp(curl: Curl, fp: ExtraFingerprints):
         curl.setopt(CurlOpt.SSLVERSION, fp.tls_min_version | CurlSslVersion.MAX_DEFAULT)
     if fp.tls_grease is not None:
         curl.setopt(CurlOpt.TLS_GREASE, int(fp.tls_grease))
+    if fp.tls_grease_sigalgs is not None:
+        curl.setopt(CurlOpt.TLS_GREASE_SIGALGS, int(fp.tls_grease_sigalgs))
     if fp.tls_permute_extensions is not None:
         curl.setopt(CurlOpt.SSL_PERMUTE_EXTENSIONS, int(fp.tls_permute_extensions))
     if fp.tls_cert_compression is not None:
@@ -440,6 +442,7 @@ def _apply_fingerprint(
     curl.setopt(CurlOpt.SSL_ENABLE_ALPS, int(fingerprint.tls_alps))
     curl.setopt(CurlOpt.SSL_ENABLE_TICKET, int(fingerprint.tls_session_ticket))
     curl.setopt(CurlOpt.TLS_GREASE, int(fingerprint.tls_grease))
+    curl.setopt(CurlOpt.TLS_GREASE_SIGALGS, int(fingerprint.tls_grease_sigalgs))
     if fingerprint.tls_use_new_alps_codepoint:
         curl.setopt(CurlOpt.SSL_ENABLE_ALPS, 1)
         curl.setopt(
@@ -490,6 +493,11 @@ def _apply_fingerprint(
     if fingerprint.tls_trust_anchors is not None:
         curl.setopt(
             CurlOpt.TLS_TRUST_ANCHORS, ",".join(fingerprint.tls_trust_anchors)
+        )
+    if fingerprint.tls_trust_anchors_shuffle is not None:
+        curl.setopt(
+            CurlOpt.TLS_TRUST_ANCHORS_SHUFFLE,
+            int(fingerprint.tls_trust_anchors_shuffle),
         )
 
     # http2 settings

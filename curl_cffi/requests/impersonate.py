@@ -28,6 +28,10 @@ BrowserTypeLiteral = Literal[
     "chrome145",
     "chrome146",
     "chrome150",
+    "chrome151",
+    "chrome152",
+    "chrome153",
+    "chrome154",
     "chrome99_android",
     "chrome131_android",
     # Safari
@@ -78,7 +82,7 @@ BrowserTypeLiteral = Literal[
 ]
 
 
-DEFAULT_CHROME = "chrome150"
+DEFAULT_CHROME = "chrome154"
 DEFAULT_EDGE = "edge101"
 DEFAULT_SAFARI = "safari2601"
 DEFAULT_SAFARI_IOS = "safari260_ios"
@@ -90,7 +94,7 @@ DEFAULT_TOR = "tor145"
 
 
 REAL_TARGET_MAP = {
-    "chrome": "chrome150",
+    "chrome": "chrome154",
     "edge": "edge101",
     "safari": "safari2601",
     "safari_ios": "safari260_ios",
@@ -146,6 +150,10 @@ class BrowserType(str, Enum):  # TODO: remove in version 1.x
     chrome145 = "chrome145"
     chrome146 = "chrome146"
     chrome150 = "chrome150"
+    chrome151 = "chrome151"
+    chrome152 = "chrome152"
+    chrome153 = "chrome153"
+    chrome154 = "chrome154"
     chrome99_android = "chrome99_android"
     chrome131_android = "chrome131_android"
     safari153 = "safari153"
@@ -178,6 +186,7 @@ class BrowserType(str, Enum):  # TODO: remove in version 1.x
 class ExtraFingerprints:
     tls_min_version: Optional[int] = None
     tls_grease: Optional[bool] = None
+    tls_grease_sigalgs: Optional[bool] = None
     tls_permute_extensions: Optional[bool] = None
     tls_cert_compression: Optional[Literal["zlib", "brotli"]] = None
     tls_signature_algorithms: Optional[list[str]] = None
@@ -197,6 +206,7 @@ class ExtraFingerprints:
 class ExtraFpDict(TypedDict, total=False):
     tls_min_version: Optional[int]
     tls_grease: Optional[bool]
+    tls_grease_sigalgs: Optional[bool]
     tls_permute_extensions: Optional[bool]
     tls_cert_compression: Optional[Literal["zlib", "brotli"]]
     tls_signature_algorithms: Optional[list[str]]
