@@ -24,6 +24,7 @@ Python 3.10 is the minimum supported version since v0.14.
 ## Recent highlights
 
 - 🧭 Our new toy, [brimp](https://github.com/lexiforest/brimp), a lightweight browser, works like curl_cffi with JavaScript enabled. Try it out today!
+- 🆕 Added `chrome151` to `chrome154`, with Chrome 152+ signature_algorithms GREASE and Chrome 154 trust anchor IDs. `chrome` now points to `chrome154`.
 - 🆕 Added support for the new algorithm and extensions in Chrome 150/152.
 
 ## Recall.ai - API for meeting recordings
